@@ -1,0 +1,20 @@
+<launch>
+  
+  <!--是否重复开启底层节点,此处默认不开启-->
+  <arg name="repeat"  default="false"/>
+
+  <!-- Listen to messages from joysticks -->
+  <node pkg="joystick_ctrl" type="joy_node" name="joy_node" output="screen" >
+    <param name="dev" type="string" value="/dev/input/js0" />
+    <param name="deadzone" value="0.12" />
+  </node>
+
+  <node pkg="joystick_ctrl" name="joy_itrctrl" type="joy_itrctrl" output="screen">
+    <rosparam command="load" file="$(find joystick_ctrl)/params.yaml"/>
+  </node>
+
+  <!-- <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_twist_keyboard" output="screen">
+    <remap from="/cmd_vel" to="/car/keyboard"/>
+  </node> -->
+
+</launch>

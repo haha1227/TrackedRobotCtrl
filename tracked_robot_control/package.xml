@@ -1,0 +1,47 @@
+<package format="2">
+  <name>tracked_robot_control</name>
+  <version>1.0.0</version>
+  <description>
+    <p>URDF Description package for tracked_robot_control</p>
+    <p>This package contains configuration data, 3D models and launch files
+for tracked_robot_control robot</p>
+  </description>
+  <author>TODO</author>
+  <maintainer email="TODO@email.com" />
+  <license>BSD</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roslaunch</depend>
+  <depend>robot_state_publisher</depend>
+  <depend>rviz</depend>
+  <depend>joint_state_publisher_gui</depend>
+  <depend>gazebo</depend>
+  <build_depend>std_msgs</build_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <build_depend>urdf</build_depend>
+  <exec_depend>urdf</exec_depend>
+  <build_depend>trac_ik_lib</build_depend>
+  <exec_depend>trac_ik_lib</exec_depend>
+  <build_depend>moveit_core</build_depend>
+  <exec_depend>moveit_core</exec_depend>
+  <build_depend>moveit_ros_planning</build_depend>
+  <exec_depend>moveit_ros_planning</exec_depend>
+  <build_depend>boost</build_depend>
+  <exec_depend>boost</exec_depend>
+  <build_depend>liborocos-kdl-dev</build_depend>
+  <build_depend>libnlopt-dev</build_depend>
+  <build_depend>libnlopt-cxx-dev</build_depend>
+  <exec_depend>liborocos-kdl</exec_depend>
+  <exec_depend>libnlopt-dev</exec_depend>
+  <exec_depend>libnlopt0</exec_depend>
+
+  <build_depend>tracked_uart_comm</build_depend>
+  <exec_depend>tracked_uart_comm</exec_depend>
+  <build_export_depend>tracked_uart_comm</build_export_depend>
+
+  <depend>pilz_industrial_motion_planner</depend>
+
+
+  <export>
+    <architecture_independent />
+  </export>
+</package>

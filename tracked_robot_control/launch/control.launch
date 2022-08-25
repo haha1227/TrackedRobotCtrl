@@ -1,0 +1,9 @@
+<launch>
+  <!--<node name="tracked_uart_comm" pkg="tracked_uart_comm" type="uart_comm" output="screen" />-->
+  <param name="robot_description" textfile="$(find tracked_robot_control)/urdf/track_robot.urdf" />
+  <node name="tracked_robot_control" pkg="tracked_robot_control" type="robot_control" output="screen">
+      <param name="~/arm_ctrl" value="true"/>
+      <param name="~/flipper_ctrl" value="true"/>
+      <param name="~/mobile_ctrl" value="true"/>
+  </node>
+</launch>

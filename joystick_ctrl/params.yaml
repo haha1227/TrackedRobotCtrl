@@ -1,0 +1,21 @@
+# The distance between the front and rear axle of the racecar
+wheelbase: 0.32 # meters
+
+# Limits on the speed and steering angle
+max_speed: 0.2                # meters/second
+max_steering_angle: 0.2      # 14degrees
+
+# Enables joystick if true
+joy: true
+joy_max_speed: 0.1
+joy_speed_axis: 1
+joy_angle_axis: 0
+joy_auto_button: 3
+joy_manual_button: 0
+joy_keyboard_button: 2
+
+joy_arm_x_axis: 3
+joy_arm_y_axis: 2
+joy_arm_z_axis: 5
+
+update_pose_rate: 0.02

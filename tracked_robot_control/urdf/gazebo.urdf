@@ -1,0 +1,227 @@
+<robot name="tracked_robot_control">
+    <link name="base_link">
+        
+<inertial>
+            <origin xyz="-0.0674915230585722 -0.00025870234008164 -0.0275067292301167" rpy="0 0 0" />
+            <mass value="32.54855606469" />
+            <inertia ixx="0.441367370117378" ixy="-5.66691993245579E-05" ixz="0.000202691041780578" iyy="1.10803836031601" iyz="-3.34903315072632E-06" izz="0.954591023536414" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://tracked_robot_control/meshes/base_link.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="1 1 1 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://tracked_robot_control/meshes/base_link.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="link0">
+        
+<inertial>
+            <origin xyz="-0.000587416644515254 -0.00150760249128232 0.111320786593388" rpy="0 0 0" />
+            <mass value="1.92015110469124" />
+            <inertia ixx="0.010482511140751" ixy="7.9810004833857E-07" ixz="-2.41895504935923E-05" iyy="0.0107740300107195" iyz="7.80477822324452E-07" izz="0.0106513995738549" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://tracked_robot_control/meshes/link0.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.866666666666667 0.866666666666667 0.890196078431372 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://tracked_robot_control/meshes/link0.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="joint0" type="revolute">
+        <origin xyz="-0.253 0 0.0505" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="link0" />
+        <axis xyz="0 0 1" />
+        <limit lower="-1.57" upper="1.57" effort="0" velocity="1" />
+    </joint>
+    <link name="link1">
+        
+<inertial>
+            <origin xyz="0.000687409052083365 0.233849252924049 -0.00115877256537901" rpy="0 0 0" />
+            <mass value="2.17538727401457" />
+            <inertia ixx="0.00738200049859785" ixy="1.04313888412098E-06" ixz="1.04674345410059E-06" iyy="0.00279979634830825" iyz="6.08519962318801E-05" izz="0.00880818669800102" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://tracked_robot_control/meshes/link1.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://tracked_robot_control/meshes/link1.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="joint1" type="revolute">
+        <origin xyz="0 0 0.1535" rpy="1.5708 0 -3.1416" />
+        <parent link="link0" />
+        <child link="link1" />
+        <axis xyz="0 0 1" />
+        <limit lower="-1.22" upper="1.22" effort="0" velocity="1" />
+    </joint>
+    <link name="link2">
+        
+<inertial>
+            <origin xyz="-0.00347651106740199 0.236879241048599 -0.000284750104090528" rpy="0 0 0" />
+            <mass value="1.22292444990362" />
+            <inertia ixx="0.00449024260336902" ixy="5.82564083565254E-05" ixz="6.0204045875614E-06" iyy="0.000940151522085332" iyz="-5.05943053885118E-06" izz="0.00489130466426467" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://tracked_robot_control/meshes/link2.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://tracked_robot_control/meshes/link2.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="joint2" type="revolute">
+        <origin xyz="0 0.542 -0.0725" rpy="0 0 1.5708" />
+        <parent link="link1" />
+        <child link="link2" />
+        <axis xyz="0 0 1" />
+        <limit lower="-3.14" upper="1.22" effort="0" velocity="1" />
+    </joint>
+    <link name="link3">
+        
+<inertial>
+            <origin xyz="-0.00225064435159039 -9.93763604639764E-06 0.00471567407921577" rpy="0 0 0" />
+            <mass value="0.8574711453896" />
+            <inertia ixx="0.00117543472791132" ixy="1.01291656635798E-07" ixz="-9.42842250881147E-07" iyy="0.00253388020509334" iyz="7.23608255282409E-09" izz="0.00223000131066726" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://tracked_robot_control/meshes/link3.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://tracked_robot_control/meshes/link3.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="joint3" type="revolute">
+        <origin xyz="-0.014 0.515 0.07" rpy="0 0 1.5708" />
+        <parent link="link2" />
+        <child link="link3" />
+        <axis xyz="0 0 1" />
+        <limit lower="-1.57" upper="1.57" effort="0" velocity="1" />
+    </joint>
+    <link name="link4">
+        
+<inertial>
+            <origin xyz="-3.62846197532463E-10 6.7323508746997E-10 -0.0625340800915535" rpy="0 0 0" />
+            <mass value="0.794654268554035" />
+            <inertia ixx="0.000752812795887256" ixy="9.88168149053679E-13" ixz="-1.45379800870429E-12" iyy="0.000571700009375142" iyz="-1.5737171860002E-12" izz="0.000338332721601438" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://tracked_robot_control/meshes/link4.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://tracked_robot_control/meshes/link4.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="joint4" type="fixed">
+        <origin xyz="0.22166 0 0" rpy="1.5708 0 1.5708" />
+        <parent link="link3" />
+        <child link="link4" />
+        <axis xyz="0 0 1" />
+        <limit lower="-3.14" upper="3.14" effort="0" velocity="1" />
+    </joint>
+    
+<transmission name="trans_joint0">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="joint0">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="joint0_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_joint1">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="joint1">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="joint1_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_joint2">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="joint2">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="joint2_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_joint3">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="joint3">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="joint3_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/</robotNamespace>
+        </plugin>
+    </gazebo>
+</robot>

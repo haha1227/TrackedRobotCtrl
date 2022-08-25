@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>tracked_uart_comm</name>
+  <version>0.1.0</version>
+  <description>it's used for send/read data to/from the uart port</description>
+  <maintainer email="gao@todo.todo">yapeng gao</maintainer>
+  <license>Apache 2.0</license>
+  <author >yapeng gao</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>serial</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <exec_depend>serial</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+
+</package>
