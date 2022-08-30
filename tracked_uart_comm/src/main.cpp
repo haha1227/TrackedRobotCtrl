@@ -17,7 +17,9 @@ int main (int argc, char** argv){
     ros::init(argc, argv, "tracked_uart_comm");
     ros::NodeHandle nh;
 
+    // subscribe the motor_command from the tracked_robot_control package
     ros::Subscriber write_sub = nh.subscribe("motor_command", 10, write_callback);
+    // publish the battery, arm joints, mobile info
     ros::Publisher battery_pub = nh.advertise<sensor_msgs::BatteryState>("battery_info", 10);
     ros::Publisher arm_pub = nh.advertise<sensor_msgs::JointState>("arm_info", 10);
     ros::Publisher mobile_pub = nh.advertise<sensor_msgs::JointState>("mobile_info", 10);
@@ -36,12 +38,15 @@ int main (int argc, char** argv){
         if(ser_port.ser.available())
         {
             std_msgs::String result;
+            // read the following two values
             result.data = Ascii2Hex(ser_port.ser.readline(2, ""));
             ser_port.ser.flush();
-
+            
+            // append the two values into pc_buffer
             pc_buffer.append(result.data);
             if (pc_buffer.size()>ser_port.kBufferSize)
             {
+                // remove the first two values in the pc_buffer in order to keep its size unchangeable
                 pc_buffer.erase(0,2);
                 ros::Time frame_end_time;
                 std::string feedback = ser_port.AutoLineData(pc_buffer, frame, frame_end_time);
@@ -91,7 +96,7 @@ int main (int argc, char** argv){
                 }
                 else if (feedback == "position")
                 {
-                    // convert the pos from encode values to radian
+                    // convert the pos from encode values (in the position sensors) to radian
                     mobile_info.position = { 0.0, 0.0, -1.0 * (Hex2Dec(frame.substr(4, 2) + frame.substr(2, 2)) - 602.0) / 11.6 * ser_port.kDegree2Radian};
                     if (mobile_info.position.at(2) > M_PI)
                         mobile_info.position.at(2) -= 2.0*M_PI;

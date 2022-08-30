@@ -42,7 +42,6 @@ bool UART_Comm::InitSerialPort(void)
     return true;
 }
 
-// auto segment the serial data into three different frames for battery info, velocity info, and position info
 std::string UART_Comm::AutoLineData(std::string buffer, std::string& frame, ros::Time& frame_end_time)
 {
     std::string frame_header = "0A0C";

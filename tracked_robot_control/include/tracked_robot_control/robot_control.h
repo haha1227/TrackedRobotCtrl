@@ -44,6 +44,8 @@ public:
     // define position control or vel control only for the flipper.
     std::string flipper_ctrl_type = "position";
 
+    // check the urdf/track_robot.urdf, or you can display the robot with the launch/display.launch file
+    // we need to set whcih joint can be controlled, here are from the chain_start to chain_end
     std::string chain_start = "base_link";
     std::string chain_end = "link4";
     std::string urdf_param = "/robot_description";
@@ -55,16 +57,24 @@ public:
     KDL::JntArray ll, ul;
 
     void InitKinematicsSolver(void);
+
+    // joint coordinates to Cartesian coordinates, forward kinematics
     KDL::Frame Jnt2Cart(KDL::JntArray joint_positions);
+    // Cartesian coordinates to joint coordinates, inverse kinematics
     KDL::JntArray Cart2Jnt(KDL::Frame cart_frame, bool random_seed = false);
+
+    // convert the 6-D pose from the KDL::Frame format to std::vector
     std::vector<double> Frame2Vector(KDL::Frame frame);
     KDL::Frame Vector2Frame(std::vector<double> v);
+    // bool arm is not used
     KDL::JntArray GetCurrentJntPos(std::vector<double> input, bool arm = true);
     KDL::JntArray current_jnt_pos;
     KDL::JntArray current_motor_pos;
     void PrintFrame(KDL::Frame input);
 
+    // the number of the used joints for the arm kinematics, here it is equal to 5 because our arm has 5 position sensors.
     int num_used_joints;
+    // home_jnt means the position of each joint is equal to 0
     KDL::JntArray home_jnt;
 
     ros::Rate rate = ros::Rate(100);
@@ -114,19 +124,25 @@ public:
 
     std::vector<MiniPID> joint_pids, mobile_pids;
     double rpm2radian = 0.104719755;
+    // 查看‘额定转速’和'总减速比'， 在 'LZ_TRACK履带机器人开发手册.pdf'中的3.3 关节电机减数比和扭矩 
+    // 这里把电机的转速转换成关节的转速，每个关节的最大转速通过8.3这个系数进行了限制，也可以是其他数。200， 200，100，500等也是转速，可以人为更改
     std::vector<double> joint_vel_abs_limits = {rpm2radian*200*8.3/1520, rpm2radian*200*8.3/1660,
                                                 rpm2radian*100*8.3/1328, rpm2radian*500*8.3/7128, rpm2radian*500*8.3/1625, 500}; // for remote controller
     //std::vector<double> joint_vel_abs_limits = {3.549, 3.248, 5.334, 1.982, 8.694, 2.23};   // for pc
+    // 每个关节的总减速比
     std::vector<int> joint_vel_abs_limits_ratio = {1520, 1660, 1328, 7128, 1625, 6336};   // ratio of motor speed over joint speed
 
+    // 关节加速度的获取是ptp planning中的难点，这里我是通过不断试验得到的。
     std::vector<double> joint_acc_abs_limits = {30 ,34.9, 10.4, 17.4, 1, 2};
     std::vector<double> joint_dec_abs_limits = {30,34.9, 10.4, 17.4, 1, 2};
 
+    // PD control for the arm joints, the 6th joint is not used. 实验得到
     std::vector<int> joint_p = {500, 500, 500, 500, 500, 2000};
     std::vector<int> joint_d = {0 ,0, 0, 0, 0, 200};
 
     std::vector<int> mobile_vel_abs_limits = {3600, 3600, 2800};
     // std::vector<int> mobile_vel_abs_limits = {1000, 1000, 100};
+    // PD control for the mobile joints,
     std::vector<int> mobile_p = {500, 500, 500};
     std::vector<int> mobile_d = {0, 0, 0};
     void InitAllPID();
@@ -138,6 +154,8 @@ public:
     double wheel_radius = 0.1+0.01; // m
     double wheels_distance = 0.473; // m
 
+    // check the page:
+    // https://ros-planning.github.io/moveit_tutorials/doc/pilz_industrial_motion_planner/pilz_industrial_motion_planner.html#the-ptp-motion-command
     void planPTP(trajectory_msgs::JointTrajectory& joint_trajectory,
                  double velocity_scaling_factor = 1.0,
                  const double acceleration_scaling_factor = 1,

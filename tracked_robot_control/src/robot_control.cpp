@@ -85,6 +85,7 @@ KDL::JntArray RobotControl::Cart2Jnt(KDL::Frame cart_frame, bool random_seed)
     {
         q(i) = joint_dist_[i](rand_eng_);
     }
+    // q is the current joint position. q = home_jnt means the current state is in the home posiitons.
     if (!random_seed)
         q = home_jnt;
     //int kinematics_status = ik_solver_->CartToJnt(q, cart_frame, result);
